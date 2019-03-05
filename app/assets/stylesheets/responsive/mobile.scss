@@ -16,3 +16,10 @@
     }
   }
 }
+
+//Stretches container to look less compressed on small screens
+@media only screen and (min-width:767px) and (max-width: 1000px) {
+  .container {
+     width: 100% !important;
+  }
+}
