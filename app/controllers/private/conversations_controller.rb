@@ -1,4 +1,8 @@
 class Private::ConversationsController < ApplicationController
+
+
+
+
   def create
     recipient_id = Post.find(params[:post_id]).user.id
     @conversation = Private::Conversation.new(sender_id: current_user.id,
@@ -27,6 +31,14 @@ class Private::ConversationsController < ApplicationController
 
     respond_to do |format|
       format.js
+    end
+  end
+  
+  def open
+    @conversation = Private::Conversation.find(params[:id])
+    add_to_conversations unless already_added?
+    respond_to do |format|
+      format.js { render partial: 'private/conversations/open' }
     end
   end
 
